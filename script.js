@@ -1,12 +1,13 @@
 function ledOn() {
   console.log("ledOn")
   var ref = database.ref('led');
-  ref.update({ led: 1 })
+  ref.update({ led: 1 });
 }
+
 function ledOff() {
   console.log("ledOff")
   var ref = database.ref('led');
-  ref.update({ led: 0 })
+  ref.update({ led: 0 });
 }
 
 var config = {
@@ -19,28 +20,26 @@ var config = {
   appId: "1:360930516999:web:3b553a97d5d623cf32caa2"
 };
 
-//Firebase 데이터베이스 만들기
+// Initialize Firebase
 firebase.initializeApp(config);
-database = firebase.database();
+const database = firebase.database();
 
-// Firebase 데이터베이스 정보 가져오기
-var ref = database.ref("led");
-ref.on("value", gotData);
-
-function gotData(data) {
+// LED 상태 가져오기
+const ledRef = database.ref("led");
+ledRef.on("value", function(data) {
   var val = data.val();
-  console.log(document.getElementById("img"))
-  console.log(val.led)
   if (val.led == 0) {
-    //document.getElementById("ledstatus").innerHTML = "led가 현재 꺼짐";
     document.getElementById("ledImage").src = "off.png";
-    console.log("LED 꺼짐, 이미지 off.png로 변경");
+  } else {
+    document.getElementById("ledImage").src = "on.png?" + new Date().getTime();
   }
-  else {
-    //document.getElementById("ledstatus").innerHTML = "led가 현재 켜짐";
-    document.getElementById("ledImage").src = "on.png";
-    console.log("LED 켜짐, 이미지 on.png로 변경");
-  }
+});
 
-  console.log(val)
-}
+// 온도 가져오기
+const tempRef = database.ref("temperature");
+tempRef.on("value", function(data) {
+  var temp = data.val();
+  if (temp !== null) {
+    document.getElementById("temperature").innerHTML = `현재 온도: ${temp}°C`;
+  }
+});
