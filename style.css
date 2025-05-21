@@ -76,15 +76,16 @@ button:active {
   width: 100px;
   height: 100px;
   transition: all 0.3s ease;
-  filter: grayscale(100%) brightness(50%);
+  /* filter: grayscale(100%) brightness(50%);  <-- 이 줄 삭제 */
   transform: scale(0.9);
 }
 
 #ledImage.on {
-  filter: grayscale(0%) brightness(120%);
+  filter: brightness(120%);
   transform: scale(1.2);
   animation: glow 1.5s infinite alternate;
 }
+
 
 .temperature {
   font-size: 1.5em;
@@ -98,6 +99,7 @@ button:active {
   from {
     filter: brightness(120%) drop-shadow(0 0 15px rgba(255, 217, 61, 0.8));
   }
+
   to {
     filter: brightness(150%) drop-shadow(0 0 25px rgba(255, 217, 61, 1));
   }
