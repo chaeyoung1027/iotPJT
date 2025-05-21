@@ -1,0 +1,96 @@
+body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+h1 {
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  animation: textGlow 2s infinite;
+}
+
+h2 {
+  font-size: 2em;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+h2:hover {
+  transform: scale(1.1);
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  margin: 10px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:first-child {
+  background-color: #ffd93d;
+  color: #333;
+}
+
+button:last-child {
+  background-color: #6c5ce7;
+  color: white;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.led-status {
+  margin: 20px 0;
+}
+
+#ledImage {
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s ease;
+  filter: grayscale(100%) brightness(50%);
+  transform: scale(0.9);
+}
+
+#ledImage.on {
+  filter: grayscale(0%) brightness(120%);
+  transform: scale(1.2);
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: brightness(120%) drop-shadow(0 0 15px rgba(255, 217, 61, 0.8));
+  }
+  to {
+    filter: brightness(150%) drop-shadow(0 0 25px rgba(255, 217, 61, 1));
+  }
+}
