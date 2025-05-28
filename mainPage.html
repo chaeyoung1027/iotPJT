@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>IOT test</title>
+  <link href="mainPage.css" rel="stylesheet" type="text/css" />
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+</head>
+
+<body>
+  <center>
+    <h1>IOT TEST</h1>
+    <h2>IoT Programming</h2>
+    <div class="led-status">
+      <img id="ledImage" src="off.png" alt="LED status" />
+    </div>
+    <h3>
+      <button type="button" onclick="ledOn()">LED ON</button>
+      <button type="button" onclick="ledOff()">LED OFF</button>
+    </h3>
+
+    <div>
+      <input type="text" id="messageInput" placeholder="메시지를 입력하세요" style="padding:8px; width:250px; font-size:1em;">
+      <button type="button" onclick="sendMessage()">전송</button>
+    </div>
+    <div class="sensor-grid">
+      <div class="sensor-card">
+        <div id="temperature" class="sensor-data">현재 온도: -- °C</div>
+      </div>
+      <div class="sensor-card">
+        <div id="humidity" class="sensor-data">현재 습도: -- %</div>
+      </div>
+      <div class="sensor-card">
+        <div id="gyroscope" class="sensor-data">자이로스코프 - X: --°, Y: --°, Z: --°</div>
+      </div>
+      <div class="sensor-card">
+        <div id="accelerometer" class="sensor-data">가속도계 - X: --m/s², Y: --m/s², Z: --m/s²</div>
+      </div>
+      <div class="sensor-card full-width">
+        <div id="timestamp" class="sensor-data">마지막 업데이트: --</div>
+      </div>
+    </div>
+
+    <div id="alertBanner"></div>
+
+    <script src="mainPage.js"></script>
+    <script>
+      // 페이지 로드 시 로그인 확인
+      if (!sessionStorage.getItem('loggedIn')) {
+        window.location.href = 'index.html';
+      }
+    </script>
+
+    <div style="position: fixed; top: 20px; right: 20px;">
+      <span style="color: white; margin-right: 10px;">환영합니다, <span id="currentUser"></span>님!</span>
+      <button onclick="logout()"
+        style="padding: 8px 15px; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">로그아웃</button>
+    </div>
+
+    <script>
+      // 현재 사용자 표시
+      document.getElementById('currentUser').textContent = sessionStorage.getItem('username') || '사용자';
+    </script>
+  </center>
+</body>
+
+</html>
